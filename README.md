@@ -34,3 +34,6 @@ Update: Currently we use bar plot to plot the relation between game rating and o
 
 ## Test Plan
 We use 70% of the data for training and 30% of the data for testing.
+
+## Video
+(https://youtu.be/oEmzQSd4EVs)
