@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Rating Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./static/style.css">
+</head>
+<body>
+    <h1>Game Rating Prediction and Recommendation</h1>
+    <form id="prediction-form">
+        <div class="form-group">
+            <label>Platform Support:</label>
+            <select name="platform_support">
+                <option value="0">No Platform</option>
+                <option value="1">Linux</option>
+                <option value="2">Mac</option>
+                <option value="3">Windows</option>
+                <option value="4">Mac+Linux</option>
+                <option value="5">Windows+Linux</option>
+                <option value="6">Windows+Mac</option>
+                <option value="7">All Platforms</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Release Year:</label>
+            <input type="number" name="release_year" min="1998" max="2024" value="2020" required>
+        </div>
+        <div class="form-group">
+            <label>Release Month:</label>
+            <input type="number" name="release_month" min="1" max="12" value="6" required>
+        </div>
+        <div class="form-group">
+            <label>Original Price:</label>
+            <input type="number" name="price_original" step="0.01" value="29.99" required>
+        </div>
+        <div class="form-group">
+            <label>Final Price:</label>
+            <input type="number" name="price_final" step="0.01" value="19.99" required>
+        </div>
+        <div class="form-group">
+            <label>Number of user reviews:</label>
+            <input type="number" name="user_reviews" min="0" max="10000000" value="2000" required>
+        </div>
+        <div class="form-group">
+            <label>Positivity ratio of user reviews:</label>
+            <input type="number" name="positive_ratio" min="1" max="100" value="80" required>
+        </div>
+        <button type="submit">Predict Game Rating</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(e.target);
+            
+            // Send prediction request
+            axios.post('/predict', formData)
+                .then(function(response) {
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = `
+                        <h2>Prediction Results</h2>
+                        <p>Predicted Rating: ${response.data.predicted_rating.toFixed(2)}</p>
+                        
+                        <h2>Similar Game Recommendations</h2>
+                        ${response.data.similar_games.map(game => `
+                            <div>
+                                <h3>${game.title}</h3>
+                                <p>Platform Support: ${game.platform_support}</p>
+                                <p>Release Year: ${game.release_year}</p>
+                                <p>Price: $${game.price_final}</p>
+                                <p>Rating: ${game.rating}</p>
+                            </div>
+                        `).join('<hr>')}
+                    `;
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                    alert('Prediction failed');
+                });
+        });
+    </script>
+</body>
+</html>
