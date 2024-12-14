@@ -56,4 +56,3 @@ I created an interactive webpage to show users how our model work. The user will
 
 ## Result
 For the modeling, I tested my prediction with mean squared error and getting a result of about 0.27. For the webpage, it can nicely function for running and visualizing the prediction of rating. Therefore my results have achieve my goal of predicting rating.
-![image](https://github.com/user-attachments/assets/c797ad22-bb16-4ce2-bdd7-9b3ee2671e4a)
