@@ -1,0 +1,7 @@
+flask
+numpy
+joblib
+pandas
+pytest
+nbconvert
+nbformat
