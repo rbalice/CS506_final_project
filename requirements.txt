@@ -7,3 +7,6 @@ nbconvert
 nbformat
 jupyter
 ipykernel
+seaborn
+matplotlib
+scikit-learn
