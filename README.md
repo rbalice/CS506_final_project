@@ -37,3 +37,23 @@ We use 70% of the data for training and 30% of the data for testing.
 
 ## Video
 (https://youtu.be/oEmzQSd4EVs)
+
+# Final Report
+## Prepare dataset
+If you want to run the “Final Project Code0.ipynb” file to see the data processing, unzip “games.csv.zip”. If want to run the webpage then unzip “games_cleaned.csv.zip”.
+
+## Build and run the code
+First download all the files. Run “make install” in terminal to create a virtual environment and install all required Python libraries. Then “make run” in terminal to start the Flask development server.
+
+## Workflow
+The workflow tests whether we can open the ipynb file and open the homepage of the webpage. The other inner code will not be test because of the large dataset.
+
+## Data Processing and Modeling
+In order to create model with more features, we translate some category features into numbers, and combine Windows”, “Mac”, “Linux” features into a single feature that represent their platform based on numbers (1-7). We select features including release date, number and positivity of user review, prices in original and final to predict the target “rating”. For model, we choose the linear regression model.
+
+## Visualizations of data
+I created an interactive webpage to show users how our model work. The user will need to input features of the model and the webpage will give a prediction of its rate. Also it will shows the 3 most similar games about these features.
+
+## Result
+For the modeling, I tested my prediction with mean squared error and getting a result of about 0.27. For the webpage, it can nicely function for running and visualizing the prediction of rating. Therefore my results have achieve my goal of predicting rating.
+![image](https://github.com/user-attachments/assets/c797ad22-bb16-4ce2-bdd7-9b3ee2671e4a)
